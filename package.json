@@ -1,7 +1,7 @@
 {
   "name": "employee-tracker",
   "version": "1.0.0",
-  "description": "12. SQL Challenge: Employee Tracker",
+  "description": "A command-line application that manages a company's employee database, using Node.js, Inquirer, and MySQL.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,15 +12,16 @@
     "url": "git+https://github.com/Lemming97/Employee-Tracker.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Lindsey Martin",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Lemming97/Employee-Tracker/issues"
   },
   "homepage": "https://github.com/Lemming97/Employee-Tracker#readme",
   "dependencies": {
     "express": "^4.18.1",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "inquirer": "^7.3.3"
   },
   "devDependencies": {
     "jest": "^28.1.1"
