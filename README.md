@@ -20,7 +20,7 @@ Employee Tracker is a content-management system (CMS). It is command-line applic
 
 ## Installation 
 
-Clone the repository from GitHub and download Node. Install mysql, npm node mysql2, and enter your own password in the connection.js file.
+Clone the repository from GitHub and download Node. Install mysql, console.table, express, inquirer, npm node mysql2, and enter your own password in the connection.js file.
  
 ## User Story
 
