@@ -8,7 +8,7 @@ const employee_db = mysql.createConnection(
       // Your MySQL username,
       user: 'root',
       // Your MySQL password
-      password: '',
+      password: 'password',
       database: 'employee_db'
     },
     console.log('Connected to the employee database.')

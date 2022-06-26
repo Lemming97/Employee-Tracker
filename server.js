@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql2');
+// const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const db = require('./db/connection');
 const cTable = require('console.table');
@@ -17,7 +17,6 @@ app.use(express.json());
 //error for database
 db.connect(err => {
   if (err) throw err;
-  mainMenu();
 });
 
 
@@ -71,7 +70,7 @@ const mainMenu = () => {
 
 
 const selectDepartments = () => {
-  connection.query(
+  db.query(
     'SELECT * FROM department;',
     (err, results) => {
       console.table(results);
@@ -81,7 +80,7 @@ const selectDepartments = () => {
 
 
 const selectRoles = () => {
-  connection.query(
+  db.query(
     'SELECT * FROM role;',
     (err, results) => {
       console.table(results);
@@ -92,7 +91,7 @@ const selectRoles = () => {
 
 
 const selectEmployees = () => {
-  connection.query(
+  db.query(
     "SELECT E.id, E.first_name, E.last_name, R.title, D.name AS department, R.salary, CONCAT(M.first_name,' ',M.last_name) AS manager FROM employee E JOIN role R ON E.role_id = R.id JOIN department D ON R.department_id = D.id LEFT JOIN employee M ON E.manager_id = M.id;",
     (err, results) => {
       console.table(results);
@@ -114,13 +113,13 @@ const promptAddDepartment = () => {
         if (departmentName) {
           return true;
         } else {
-          console.log('Please enter the name of your department!');
+          console.log('Please enter the name of the department!');
           return false;
         }
       }
     }])
     .then(name => {
-      connection.promise().query("INSERT INTO department SET ?", name);
+      db.promise().query("INSERT INTO department SET ?", name);
       selectDepartments();
     })
 }
@@ -130,7 +129,7 @@ const promptAddDepartment = () => {
 
 const promptAddRole = () => {
 
-  return connection.promise().query(
+  return db.promise().query(
       "SELECT department.id, department.name FROM department;"
     )
     .then(([departments]) => {
@@ -146,12 +145,12 @@ const promptAddRole = () => {
           [{
               type: 'input',
               name: 'title',
-              message: 'Enter the name of your title (Required)',
+              message: 'Enter the name of the role (Required)',
               validate: titleName => {
                 if (titleName) {
                   return true;
                 } else {
-                  console.log('Please enter your title name!');
+                  console.log('Please enter the role name!');
                   return false;
                 }
               }
@@ -159,18 +158,18 @@ const promptAddRole = () => {
             {
               type: 'list',
               name: 'department',
-              message: 'Which department are you from?',
+              message: 'Which department are they from?',
               choices: departmentChoices
             },
             {
               type: 'input',
               name: 'salary',
-              message: 'Enter your salary (Required)',
+              message: 'Enter the salary (Required)',
               validate: salary => {
                 if (salary) {
                   return true;
                 } else {
-                  console.log('Please enter your salary!');
+                  console.log('Please enter the salary!');
                   return false;
                 }
               }
@@ -182,7 +181,7 @@ const promptAddRole = () => {
           department,
           salary
         }) => {
-          const query = connection.query(
+          const query = db.query(
             'INSERT INTO role SET ?', {
               title: title,
               department_id: department,
@@ -202,7 +201,7 @@ const promptAddRole = () => {
 
 const promptAddEmployee = (roles) => {
 
-  return connection.promise().query(
+  return db.promise().query(
       "SELECT R.id, R.title FROM role R;"
     )
     .then(([employees]) => {
@@ -215,7 +214,7 @@ const promptAddEmployee = (roles) => {
         name: title
       }))
 
-      connection.promise().query(
+      db.promise().query(
         "SELECT E.id, CONCAT(E.first_name,' ',E.last_name) AS manager FROM employee E;"
       ).then(([managers]) => {
         let managerChoices = managers.map(({
@@ -273,7 +272,7 @@ const promptAddEmployee = (roles) => {
             role,
             manager
           }) => {
-            const query = connection.query(
+            const query = db.query(
               'INSERT INTO employee SET ?', {
                 first_name: firstName,
                 last_name: lastName,
@@ -302,7 +301,7 @@ const promptAddEmployee = (roles) => {
 
 const promptUpdateRole = () => {
 
-  return connection.promise().query(
+  return db.promise().query(
       "SELECT R.id, R.title, R.salary, R.department_id FROM role R;"
     )
     .then(([roles]) => {
@@ -358,7 +357,7 @@ const promptUpdateRole = () => {
               title,
               salary
             }) => {
-              const query = connection.query(
+              const query = db.query(
                 'UPDATE role SET title = ?, salary = ? WHERE id = ?',
                 [
                   title,
@@ -382,10 +381,10 @@ mainMenu();
 
 
 // Default response for any other request (Not Found)
-app.use((req, res) => {
-  res.status(404).end();
-});
+// app.use((req, res) => {
+//   res.status(404).end();
+// });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });

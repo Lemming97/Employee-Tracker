@@ -68,8 +68,8 @@ To build a command-line application that manages a company's employee database, 
 
 
 ## Screenshots
-<br><img src="./public/assets/images/Screen2.png" alt="screenshot of starting page" width="350"/>
-<br><img src="./public/assets/images/Screen1.png" alt="screenshot of note taking page" width="350"/>
+<br><img src="./assets/Screen1.png" alt="screenshot of start tables" width="350"/>
+<br><img src="./assets/Screen2.png" alt="screenshot of final table" width="350"/>
 
 
 ## Tests 
