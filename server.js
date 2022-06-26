@@ -31,14 +31,14 @@ const mainMenu = () => {
   return inquirer.prompt([{
       type: 'list',
       name: 'menu',
-      message: 'What can I help you with?',
+      message: 'What would you like to do?',
       choices: [
         "View Departments",
         "View Roles",
         "View Employees",
-        "Add New Department",
-        "Add New Role",
-        "Add New Employee",
+        "Add Department",
+        "Add Role",
+        "Add Employee",
         "Update An Employee's Role",
         "End"
       ]
@@ -54,13 +54,13 @@ const mainMenu = () => {
         case 'View Employees':
           selectEmployees();
           break;
-        case 'Add New Department':
+        case 'Add Department':
           promptAddDepartment();
           break;
-        case 'Add New Role':
+        case 'Add Role':
           promptAddRole();
           break;
-        case 'Add New Employee':
+        case 'Add Employee':
           promptAddEmployee();
           break;
         case 'Update An Employee Role':
@@ -73,6 +73,8 @@ const mainMenu = () => {
     })
 };
 
+
+
 const selectDepartments = () => {
   connection.query(
     'SELECT * FROM department;',
@@ -81,6 +83,7 @@ const selectDepartments = () => {
       mainMenu();
     });
 };
+
 
 const selectRoles = () => {
   connection.query(
@@ -103,6 +106,10 @@ const selectEmployees = () => {
   )
 };
 
+
+
+
+
 const promptAddDepartment = () => {
   inquirer.prompt([{
       type: 'input',
@@ -121,7 +128,10 @@ const promptAddDepartment = () => {
       connection.promise().query("INSERT INTO department SET ?", name);
       selectDepartments();
     })
-};
+}
+
+
+
 
 const promptAddRole = () => {
 
@@ -190,7 +200,10 @@ const promptAddRole = () => {
         }).then(() => selectRoles())
 
     })
-};
+}
+
+
+
 
 const promptAddEmployee = (roles) => {
 
@@ -369,9 +382,6 @@ const promptUpdateRole = () => {
 };
 
 mainMenu();
-
-
-
 
 
 
