@@ -15,12 +15,19 @@ Employee Tracker is a content-management system (CMS). It is command-line applic
 * [Usage](#usage)
 * [Links](#links)
 * [Screenshots](#screenshots)
+* [Tests](#test)
 
 
 
 ## Installation 
 
-Clone the repository from GitHub and download Node. Install mysql, console.table, express, inquirer, npm node mysql2, and enter your own password in the connection.js file.
+1. Clone the repository from GitHub
+1. Install `node.js`
+1. Run `npm install` to install dependencies. Dependencies include mysql, console.table, express, inquirer, and jest.
+1. Run `mysql -u root -p` to start the database connection
+1. Create the database by running the command: `source db/schema.sql`.
+1. Seed the database by running the command: `source db/seeds.sql`.
+
  
 ## User Story
 
@@ -53,7 +60,7 @@ THEN I am prompted to select an employee to update and their new role and this i
 ```
 
 ## Usage
-To  create new notes in the right-hand column while being able to delete them from the left-hand column.
+To build a command-line application that manages a company's employee database, using Node.js, Inquirer, and MySQL.
 
 
 ## Links
@@ -63,6 +70,13 @@ To  create new notes in the right-hand column while being able to delete them fr
 ## Screenshots
 <br><img src="./public/assets/images/Screen2.png" alt="screenshot of starting page" width="350"/>
 <br><img src="./public/assets/images/Screen1.png" alt="screenshot of note taking page" width="350"/>
+
+
+## Tests 
+Jest is available for testing. 
+1. In the terminal: run `npm test` to run Jest for tests on constructors.
+
+
 
 
 
