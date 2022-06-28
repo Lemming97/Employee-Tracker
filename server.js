@@ -49,16 +49,16 @@ const mainMenu = () => {
           selectEmployees();
           break;
         case 'Add Department':
-          promptAddDepartment();
+          AddDepartment();
           break;
         case 'Add Role':
-          promptAddRole();
+          AddRole();
           break;
         case 'Add Employee':
-          promptAddEmployee();
+          AddEmployee();
           break;
         case 'Update An Employee Role':
-          promptUpdateRole();
+          UpdateRole();
           break;
         default:
           process.exit();
@@ -104,7 +104,7 @@ const selectEmployees = () => {
 
 
 
-const promptAddDepartment = () => {
+const AddDepartment = () => {
   inquirer.prompt([{
       type: 'input',
       name: 'name',
@@ -127,7 +127,7 @@ const promptAddDepartment = () => {
 
 
 
-const promptAddRole = () => {
+const AddRole = () => {
 
   return db.promise().query(
       "SELECT department.id, department.name FROM department;"
@@ -199,7 +199,7 @@ const promptAddRole = () => {
 
 
 
-const promptAddEmployee = (roles) => {
+const AddEmployee = (roles) => {
 
   return db.promise().query(
       "SELECT R.id, R.title FROM role R;"
@@ -299,7 +299,7 @@ const promptAddEmployee = (roles) => {
 
 
 
-const promptUpdateRole = () => {
+const UpdateRole = () => {
 
   return db.promise().query(
       "SELECT R.id, R.title, R.salary, R.department_id FROM role R;"
@@ -328,12 +328,12 @@ const promptUpdateRole = () => {
               [{
                   type: 'input',
                   name: 'title',
-                  message: 'Enter the name of your title (Required)',
+                  message: 'Enter the name of the title (Required)',
                   validate: titleName => {
                     if (titleName) {
                       return true;
                     } else {
-                      console.log('Please enter your title name!');
+                      console.log('Please enter the title name!');
                       return false;
                     }
                   }
@@ -341,12 +341,12 @@ const promptUpdateRole = () => {
                 {
                   type: 'input',
                   name: 'salary',
-                  message: 'Enter your salary (Required)',
+                  message: 'Enter the salary (Required)',
                   validate: salary => {
                     if (salary) {
                       return true;
                     } else {
-                      console.log('Please enter your salary!');
+                      console.log('Please enter the salary!');
                       return false;
                     }
                   }
