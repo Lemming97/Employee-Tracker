@@ -33,7 +33,7 @@ const mainMenu = () => {
         "Add Department",
         "Add Role",
         "Add Employee",
-        "Update An Employee's Role",
+        "Update Role",
         "End"
       ]
     }])
@@ -57,7 +57,7 @@ const mainMenu = () => {
         case 'Add Employee':
           AddEmployee();
           break;
-        case 'Update An Employee Role':
+        case 'Update Role':
           UpdateRole();
           break;
         default:
@@ -297,12 +297,11 @@ const AddEmployee = (roles) => {
 
 
 
-
-
 const UpdateRole = () => {
+  console.log('Updating role');
 
   return db.promise().query(
-      "SELECT R.id, R.title, R.salary, R.department_id FROM role R;"
+      "SELECT R.id, R.title, R.salary, R.department_id FROM role AS R;"
     )
     .then(([roles]) => {
       let roleChoices = roles.map(({
