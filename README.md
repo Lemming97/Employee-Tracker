@@ -13,9 +13,9 @@ Employee Tracker is a content-management system (CMS). It is command-line applic
 * [User Story](#user-story)
 * [Acceptance Criteria](#acceptance-criteria)
 * [Usage](#usage)
-* [Links](#links)
+* [Video](#video)
 * [Screenshots](#screenshots)
-* [Tests](#test)
+* [Tests](#tests)
 
 
 
@@ -64,8 +64,9 @@ THEN I am prompted to select an employee to update and their new role and this i
 To build a command-line application that manages a company's employee database, using Node.js, Inquirer, and MySQL.
 
 
-## Links
-<p>To View the Live Application: <a href="https://nameless-mountain-77177.herokuapp.com/"> Click Here</a></p>
+## Video
+<p>To View the Video: <a href="https://drive.google.com/file/d/1OAsHK8kMjZYHA3-vMOgguSBajjdZIB1X/view?usp=sharing"> Click Here</a></p>
+
 
 
 ## Screenshots
